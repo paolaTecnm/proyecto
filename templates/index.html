@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+{% block title %}Lista de Clientes{% endblock %}
+{% block content %}
+<a href="{{url_for('create_cliente')}}" class="btn btn-success">Agregar Cliente</a>
+<br>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+        <th>Nombre</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
+        <th>Telefono</th>
+        <th>RFC</th>
+        <th>Acciones</th>
+    </tr>
+        </thead>
+    <tbody>
+        {%for cliente in clientes%}
+        <tr>
+            <td>{{cliente.nombre}}</td>
+            <td>{{cliente.ap_paterno}}</td>
+            <td>{{cliente.ap_materno}}</td>
+            <td>{{cliente.telefono}}</td>
+            <td>{{cliente.rfc}}</td>
+            <td>
+                <a href="{{url_for('update_cliente', rfc = cliente.rfc) }}"
+                class="btn btn-warning">Actualizar</a>
+                <a href="{{ url_for('delete_cliente', rfc = cliente.rfc) }}"
+                class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

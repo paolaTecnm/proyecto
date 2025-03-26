@@ -19,6 +19,10 @@ class Cliente(db.Model):
     telefono = db.Column(db.String)
     rfc = db.Column(db.String, primary_key=True)
 
+# Crear las tablas si no existen
+with app.app_context():
+    db.create_all()
+
     def to_dict(self):
         return{
             'nombre': self.nombre,
